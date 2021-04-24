@@ -1,0 +1,41 @@
+.topper {
+  font-size: 0.9rem;
+  background-color: #37c1c4;
+  line-height: 1.75;
+
+  .nc-icon {
+    top: 2px;
+    position: relative;
+  }
+}
+
+.navbar.navbar-transparent {
+  padding-top: 0px;
+}
+
+.shopping-badge.badge.badge-pill{
+  position: absolute;
+    left: 23px;
+    top: 3px;
+}
+
+.wishlist-badge {
+  background-color: #51cbce !important;
+  padding: 0.7em;
+  // border-radius: 0px;
+}
+.dropdown-menu {
+  margin-left: -5px
+}
+.shopping-card {
+  width: 250px;
+}
+
+.navbar .btn {
+  margin: 0px;
+}
+
+.right-auto {
+  right: auto;
+  transition: all 2s;
+}

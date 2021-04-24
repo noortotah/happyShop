@@ -1,0 +1,15 @@
+.page-header{
+  min-height: auto;
+  max-height: auto;
+  height: 250px;
+  background-color: #777;
+}
+
+.items-section {
+  position: relative;
+  top: -140px;
+
+  .shopping-cart {
+    z-index: 999;
+  }
+}

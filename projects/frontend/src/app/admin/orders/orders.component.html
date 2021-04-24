@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title float-left"> Orders List</h4>
+      </div>
+      <div class="card-body"   *ngIf="!(orders$ | async).length">
+        <h2>No Orders</h2>
+      </div>
+      <div class="card-body"  *ngIf="(orders$ | async).length">
+        <div class="table-responsive">
+          <table class="table text-center">
+            <thead class=" text-primary">
+              <th>
+                ORDER ID
+              </th>
+              <th>
+                user Name
+              </th>
+              <th>
+                # of products.
+              </th>
+              <th>
+                Total
+              </th>
+              <th>
+                Actions
+              </th>
+            </thead>
+            <tbody>
+
+              <tr *ngFor="let order of orders$ | async; index as index">
+                <td>
+                  {{order._id}}
+                </td>
+                <td>
+                  {{order.user.first_name}} {{order.user.last_name}}
+                </td>
+                <td>
+                  {{order.items?.length}}
+                </td>
+                <td>
+                  {{ getTotal(order.items) }}
+                </td>
+                <td>
+                  <button class="btn btn-danger" disabled="disabled">Details</button>
+                </td>
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,230 @@
+<div class="card product-card">
+  <div class="pt-2 px-2">
+    <span
+      *ngIf="
+        product.pricing.price < product.pricing.oldPrice && !product.outofStock
+      "
+      class="badge badge-danger float-left px-2 py-1"
+      ><small> Sale</small></span
+    >
+    <a class="text-danger float-right add-to-wishlist" (click)="addToWishList(product)">
+      <!-- <i class="nc-icon nc-favourite-28"></i> -->
+      <fa-icon *ngIf="!(isWished$ | async)" class="text-danger" [icon]="faHeartRegular"></fa-icon>
+      <fa-icon *ngIf="(isWished$ | async)" class="text-danger" [icon]="faHeartSolid"></fa-icon>
+    </a>
+  </div>
+  <a class="card-img-top d-block overflow-hidden" [routerLink]="['/']">
+    <img
+      src="{{ imagePath +  product.images.main }}"
+      class="product-image"
+      [ngClass]="isCarousel ? 'carousel-product-img' : ''"
+      alt="Product"
+    />
+  </a>
+  <div class="card-body py-2">
+    <h3 class="product-title">
+      <small class="d-flex">
+        <!-- <div  *ngFor="let category of product.categories" ><a class="product-category text-primary"[routerLink]="['/']">{{ category }}</a> , </div> -->
+        <!-- <a
+          *ngIf="product.categories[0]"
+          class="product-category text-primary"
+          [routerLink]="['/']"
+          >{{ product.categories[0] }}</a
+        > -->
+      </small>
+      <a class="text-dark" [routerLink]="['/']">{{ product.title }}</a>
+    </h3>
+
+    <div class="d-flex justify-content-between">
+      <div
+
+        class="product-price px-0 pt-2"
+        [ngClass]="product.outofStock ? 'col' : 'col-5'"
+      >
+        <span class="text-dark h5 font-weight-normal" *ngIf="product.outofStock"
+          >Out of Stock</span
+        >
+        <span
+          class="text-dark h4 font-weight-normal"
+          *ngIf="!product.outofStock"
+          >${{ product.pricing.price }} &nbsp;
+          <del
+            class="text-muted text-primary h6 font-weight-normal"
+            *ngIf="!product.outofStock && product.pricing.oldPrice && product.pricing.oldPrice != 0"
+            >${{ product.pricing.oldPrice }}</del
+          >
+        </span>
+      </div>
+
+      <div class="col-7 stars pt-2" *ngIf="!product.outofStock && !isCarousel">
+        <form action="">
+          <input
+            class="star star-5"
+            id="star-5-{{ product._id }}"
+            type="radio"
+            name="star"
+          />
+          <label class="star star-5" for="star-5-{{ product._id }}"></label>
+          <input
+            class="star star-4"
+            id="star-4-{{ product._id }}"
+            type="radio"
+            name="star"
+          />
+          <label class="star star-4" for="star-4-{{ product._id }}"></label>
+          <input
+            class="star star-3"
+            id="star-3-{{ product._id }}"
+            type="radio"
+            name="star"
+          />
+          <label class="star star-3" for="star-3-{{ product._id }}"></label>
+          <input
+            class="star star-2"
+            id="star-2-{{ product._id }}"
+            type="radio"
+            name="star"
+          />
+          <label class="star star-2" for="star-2-{{ product._id }}"></label>
+          <input
+            class="star star-1"
+            id="star-1-{{ product._id }}"
+            type="radio"
+            name="star"
+          />
+          <label class="star star-1" for="star-1-{{ product._id }}"></label>
+        </form>
+      </div>
+    </div>
+    <!-- VARIATIONS -->
+    <div class="variations-section" *ngFor="let variationSection of product.variations; index as Vindex">
+
+      <div class="card-body card-body-hidden" *ngIf="!isCarousel">
+        <div
+          class="text-center pb-2 row d-flex justify-content-center"
+          *ngIf="variationSection.type == 'colors'"
+        >
+          <div
+            class="mx-1 mb-2"
+            *ngFor="let color of variationSection.values; index as index"
+          >
+            <input
+              class="custom-control-input"
+              type="radio"
+              name="color-{{ product._id }}"
+              id="{{ product._id }}-{{ color }}-{{ index }}-{{Vindex}}"
+              value="{{ color }}"
+              [checked]="selectedVariation[Vindex].id == index"
+              (change)="changeVariation($event)"
+            />
+            <!--  -->
+            <label
+              class="custom-option-label rounded-circle"
+              for="{{ product._id }}-{{ color }}-{{ index }}-{{Vindex}}"
+              ><span
+                class="custom-option-color rounded-circle"
+                [ngStyle]="{ backgroundColor: color }"
+              ></span
+            ></label>
+          </div>
+        </div>
+
+        <div class="d-flex mb-2" *ngIf="variationSection.type === 'dropbox'">
+          <select
+            class="col custom-select custom-select-sm mr-2"
+            (change)="changeVariation($event)"
+          >
+            <option
+              *ngFor="let variation of variationSection.values; index as index"
+              value="{{ variation }}"
+              id="{{ product._id }}-{{ variation }}-{{ index }}-{{Vindex}}"
+              [selected]="selectedVariation[Vindex].id == index"
+            >
+              {{ variation }}
+            </option>
+          </select>
+          <!-- <button
+            class="btn btn-primary btn-sm"
+            type="button"
+            data-toggle="toast"
+            data-target="#cart-toast"
+            (click)="addToCard()"
+          >
+            <i class="nc-icon nc-cart-simple mr-1"></i>Add to Cart
+          </button> -->
+        </div>
+
+        <div
+          class="text-center pb-2 row d-flex justify-content-center"
+          *ngIf="variationSection.type === 'boxes'"
+        >
+          <div
+            class="mb-2 mx-1"
+            *ngFor="let variation of variationSection.values; index as index"
+          >
+            <input
+              class="custom-control-input"
+              type="radio"
+              name="variation-{{ product._id }}"
+              value="{{ variation }}"
+              id="{{ product._id }}-{{ variation }}-{{ index }}-{{Vindex}}"
+              [checked]="selectedVariation[Vindex].id == index"
+              (change)="changeVariation($event)"
+            />
+
+            <label
+              class="custom-option-label"
+              for="{{ product._id }}-{{ variation }}-{{ index }}-{{Vindex}}"
+              >{{ variation }}</label
+            >
+          </div>
+        </div>
+
+        <!-- <button
+          *ngIf="!product.outofStock && variationSection.type !== 'dropbox'"
+          class="btn btn-primary btn-sm btn-block mb-2"
+          type="button"
+          data-toggle="toast"
+          data-target="#cart-toast"
+          (click)="addToCard()"
+
+        >
+          <i class="nc-icon nc-cart-simple mr-1"></i>Add to Cart
+        </button> -->
+      </div>
+      <!-- <button
+          *ngIf="!product.outofStock"
+          class="btn btn-primary btn-sm btn-block mb-2"
+          type="button"
+          data-toggle="toast"
+          data-target="#cart-toast"
+          (click)="addToCard()"
+
+        >
+          <i class="nc-icon nc-cart-simple mr-1"></i>Add to Cart
+        </button> -->
+    </div>
+    <button
+          *ngIf="!product.outofStock"
+          class="btn btn-primary btn-sm btn-block mb-2"
+          type="button"
+          data-toggle="toast"
+          data-target="#cart-toast"
+          (click)="addToCard()"
+
+        >
+          <i class="nc-icon nc-cart-simple mr-1"></i>Add to Cart
+        </button>
+
+    </div>
+    <!-- VARIATIONS -->
+
+
+  <div class="card-body pt-0">
+    <div class="text-center">
+      <a class="text-secondary" data-toggle="modal" (click)="openProductView()"
+        ><i class="nc-icon nc-lock-circle-open mr-1"></i>Quick view</a
+      >
+    </div>
+  </div>
+</div>

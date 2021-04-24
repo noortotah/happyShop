@@ -1,0 +1,305 @@
+<form enctype='multipart/form-data' [formGroup]="addProductForm" (ngSubmit)="submitForm()">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card card-user">
+        <div class="image h-100">
+          <img style="cursor: pointer;" [src]="imagePreview" alt="new Product" (click)="fileInput.click()"/>
+          <input
+                type="file"
+                class="form-control-file invisible"
+                (change)="onChoosefile($event)"
+                aria-describedby="fileHelpId"
+                #fileInput
+              />
+
+        </div>
+        <div class="card-footer">
+          <p>Categories</p>
+          <!-- <label>Categories</label> -->
+          <div class="row mt-4">
+            <div class="col-md-10 pr-1">
+              <div
+                class="form-check"
+                *ngFor="let category of categories$ | async"
+              >
+                <label class="col form-check-label">
+                  <input
+                    (click)="addCategoryToForm($event, category._id)"
+                    class="form-check-input"
+                    type="checkbox"
+                    [value]="category._id"
+                  />
+                  {{ category.title }}
+                  <span class="form-check-sign"></span>
+                </label>
+                <div class="sub-cagtegories ml-5">
+                  <label
+                    class="col form-check-label"
+                    *ngFor="let subCat of category.subCategories"
+                  >
+                    <input
+
+                      class="form-check-input"
+                      type="checkbox"
+                      [value]="subCat._id"
+                      (click)="addCategoryToForm($event, subCat._id)"
+                    />
+                    {{ subCat.title }}
+                    <span class="form-check-sign"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card card-user">
+        <div class="card-header">
+          <h5 class="card-title">Add Product</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-5 pr-1">
+              <div class="form-group">
+                <label>Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="product title"
+                  formControlName="title"
+                />
+              </div>
+            </div>
+            <div class="col-md-3 px-1">
+              <div class="form-group">
+                <label>SKU</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="sku"
+                  formControlName="sku"
+                   />
+              </div>
+            </div>
+            <div class="col-md-4 pl-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">quantity</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="0"
+                  formControlName="quantity" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Description</label>
+                <textarea
+                  class="form-control textarea"
+                  placeholder="Add here your product description"
+                  formControlName="description"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-4"  formGroupName="pricing">
+            <p class="col-12">Pricing</p>
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>Price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  formControlName="price" />
+              </div>
+            </div>
+            <div class="col-md-6 pl-1">
+              <div class="form-group">
+                <label>Old Price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  formControlName="oldPrice"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <p class="col-12">Variations</p>
+            <div class="col-12 text-center">
+              <a
+                class="btn btn-primary btn-sm"
+                [ngClass]=" variations.length ? 'float-right' : '' "
+                role="button"
+                (click)="toggleInnerForm()"
+                >{{ !isInnerFormShown ? "Add Variation" : "Close Form" }}
+              </a>
+            </div>
+            <div class="col-12" *ngIf="isInnerFormShown">
+              <div class="row">
+                <div class="col-md-2 pr-1">
+                  <div class="form-group">
+                    <label>Type</label>
+                    <select class="form-control" #newVariationTypeInput>
+                      <option value="boxes">Boxes</option>
+                      <option value="colors">Colors</option>
+                      <option value="dropdown">Dropdown</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>Name</label>
+                    <input
+                      #newVariationNameInput
+                      type="text"
+                      class="form-control"
+                      aria-describedby="helpId"
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Values</label>
+                    <input
+                      #newVariationValuesInput
+                      type="text"
+                      class="form-control"
+                      aria-describedby="helpId"
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+                <div class="col-md-3 pl-1">
+                  <div class="form-group">
+                    <label for="">&nbsp;</label>
+                    <button
+                    role="button"
+                    type="button"
+                      (click)="addVariationsToForm(
+                          newVariationTypeInput.value,
+                          newVariationNameInput.value,
+                          newVariationValuesInput.value)"
+                      class="btn btn-primary form-control bg-primary text-white mt-0"
+                    >Add</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12" *ngIf="variations.length">
+              <table class="table table-striped table-inverse">
+                <thead class="thead-inverse">
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Values</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let vari of variations.controls; index as variIndex">
+                      <td>{{vari.value.type}}</td>
+                      <td>{{vari.value.name}} </td>
+                      <td scope="row">{{vari.value.values}} </td>
+                      <td> <button class="btn btn-outline-danger btn-sm " (click)="removeVariationsFromForm(variIndex)">Remove</button></td>
+                    </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="row mt-4" formGroupName="shipping_details">
+            <p class="col-12">Shipping Details</p>
+            <div class="col-md-3 pr-1">
+              <div class="form-group">
+                <label>Weight</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="0 kg"
+                  formControlName="weight"
+                />
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Height</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="0 mm"
+                  formControlName="height"
+                />
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Width</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="0 mm"
+                  formControlName="width"
+                />
+              </div>
+            </div>
+            <div class="col-md-3 pl-1">
+              <div class="form-group">
+                <label>Depth</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="0 mm"
+                  formControlName="depth"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-4" formGroupName="manufacture_details">
+            <p class="col-12">Manufacture Details</p>
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>Model Number</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder=""
+                  formControlName="model_number" />
+              </div>
+            </div>
+            <div class="col-md-6 pl-1">
+              <div class="form-group">
+                <label>Release Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  placeholder="0 mm"
+                  formControlName="release_date" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="submit" class="btn btn-primary btn-round">
+                Add Product
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

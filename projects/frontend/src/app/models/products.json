@@ -1,0 +1,25 @@
+[
+  {
+  "id": 1,
+  "title": "Women Colorblock Sneakers",
+  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.",
+  "img": "01.jpg",
+  "variationType": "boxes",
+  "variations": ["7.5", "8", "8.5", "9"],
+  "category": "Sneakers & Keds",
+  "price": 54.00,
+  "outofStock": false
+},
+{
+  "id": 2,
+  "title": "Cotton Lace Blouse",
+  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.",
+  "img": "02.jpg",
+  "variationType": "dropbox",
+  "variations": ["XS", "S", "M", "L", "XL"],
+  "category": "Women’s T-shirt",
+  "price": 28.00,
+  "oldPrice ": 38.00,
+  "outofStock": false,
+  "colors": ["#eaeaeb", "#d1dceb", "#f4e6a2", "#f3dcff"]
+}]

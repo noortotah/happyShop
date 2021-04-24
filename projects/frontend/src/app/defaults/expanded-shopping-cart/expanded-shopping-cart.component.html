@@ -1,0 +1,145 @@
+<div
+class="page-header"
+data-parallax="true"
+>
+</div>
+
+<section class="items-section pt-5">
+  <div class="container">
+    <div class="row">
+      <div class="shopping-cart col col-sm-8">
+        <div class="d-flex justify-content-between align-items-center pt-3 pb-2 pb-sm-5 mt-1"
+            >
+          <h2 class="h6 text-light mb-0">Shopping Cart</h2>
+          <a [routerLink]="['/']" class="btn btn-outline-primary btn-sm pl-2" ><i class="czi-arrow-left mr-2"></i>Continue shopping</a>
+        </div>
+
+        <ul class="list-group">
+                <li
+                  class="col-10 shopping-card list-group-item "
+                  *ngFor="let item of shoppingCartItems$ | async"
+                >
+                  <div class="row no-gutters h-100 d-flex align-items-center">
+                    <div class="col-md-3 pl-2">
+                      <img
+                        src="{{
+                          imagePath + item.product.images.main
+                        }}"
+                        class="card-img"
+                        alt=""
+                      />
+                    </div>
+                    <div class="col-md-9">
+                      <div class="card-body">
+                        <p class="card-title h5">
+                          {{ item.product.title }} -
+
+                          <span  *ngFor="let selectedVariation of item.selectedVariation">{{ selectedVariation.value }}</span>
+                        </p>
+                        <p class="card-text">
+                          <small class="text-muted"
+                            >${{ item.product.pricing.price }} x 1</small
+                          >
+                        </p>
+                        <p class="card-text">
+                          <a class="btn btn-link btn-danger" role="button" (click)="removeFormShoppingCart(item)"><fa-icon [icon]="trashAlt"></fa-icon> Remove</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <div *ngIf="!(shoppingCartItems$ | async).length">
+                  <h5 class="text-center"> No Products were added</h5>
+                </div>
+
+              </ul>
+      </div>
+      <aside class="col col-sm-4">
+        <div class="card">
+          <div class="card-body text-center">
+            <h2 class="h6 mb-3 pb-1">Subtotal</h2>
+            <h3 class="font-weight-normal">${{getTotal() | async}}</h3>
+            <hr>
+          </div>
+          <div class="card-body">
+            <div class="form-group mb-4">
+              <label class="mb-3" for="order-comments"><span class="badge badge-info font-size-xs mr-2">Note</span><span class="font-weight-medium">Additional comments</span></label>
+              <textarea disabled class="form-control" rows="6" id="order-comments"></textarea>
+            </div>
+
+            <ngb-accordion [closeOthers]="true" activeIds="static-1">
+              <ngb-panel id="static-1" cardClass="card-plain mb-0 border">
+                <ng-template ngbPanelHeader>
+                  <div class="d-flex align-items-center justify-content-between">
+                    <button ngbPanelToggle class="btn btn-link container-fluid text-left pl-0">Apply Promo Code</button>
+
+                  </div>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <form class="card-body needs-validation" method="post" novalidate="">
+                    <div class="form-group">
+                      <input disabled class="form-control" type="text" placeholder="Promo code" required="">
+                      <div class="invalid-feedback">Please provide promo code.</div>
+                    </div>
+
+                    <button disabled class="btn btn-outline-primary btn-block btn-disabled">Apply promo code</button>
+                  </form>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel id="static-2" cardClass="card-plain mb-0 border">
+                <ng-template ngbPanelHeader>
+                  <div class="d-flex align-items-center justify-content-between">
+                    <button ngbPanelToggle class="btn btn-link container-fluid text-left pl-0">Shipping Estimates</button>
+                  </div>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <form class="needs-validation" novalidate="">
+                    <div class="form-group">
+                      <select class="form-control custom-select" required="">
+                        <option value="">Choose your country</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Belgium">Belgium</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Finland">Finland</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="Switzerland">Switzerland</option>
+                        <option value="United States">United States</option>
+                      </select>
+                      <div class="invalid-feedback">Please choose your country!</div>
+                    </div>
+                    <div class="form-group">
+                      <select class="form-control custom-select" required="">
+                        <option value="">Choose your city</option>
+                        <option value="Bern">Bern</option>
+                        <option value="Brussels">Brussels</option>
+                        <option value="Canberra">Canberra</option>
+                        <option value="Helsinki">Helsinki</option>
+                        <option value="Mexico City">Mexico City</option>
+                        <option value="Ottawa">Ottawa</option>
+                        <option value="Washington D.C.">Washington D.C.</option>
+                        <option value="Wellington">Wellington</option>
+                      </select>
+                      <div class="invalid-feedback">Please choose your city!</div>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="text" placeholder="ZIP / Postal code" required="">
+                      <div class="invalid-feedback">Please provide a valid zip!</div>
+                    </div>
+                    <button class="btn btn-outline-primary btn-block" type="submit">Calculate shipping</button>
+                  </form>
+                </ng-template>
+              </ngb-panel>
+
+            </ngb-accordion>
+          </div>
+          <div class="card-body">
+            <a class="btn btn-danger container-fluid" role="button" (click)="checkout()" ><i class="nc-icon nc-credit-card"></i> Checkout</a>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+  </div>
+</section>

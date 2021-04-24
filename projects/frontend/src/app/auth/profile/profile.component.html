@@ -1,0 +1,99 @@
+<div class="wrapper">
+    <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/fabio-mangione.jpg');">
+        <div class="filter"></div>
+    </div>
+    <div class="section profile-content">
+        <div class="container">
+            <div class="owner">
+                <div class="avatar">
+                    <img src="./assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                </div>
+                <div class="name">
+                    <h4 class="title">{{(user$ | async)?.first_name ? (user$ | async).first_name : 'No Name'}}<br /></h4>
+                    <h6 class="description">{{(user$ | async)?.email}}</h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto text-center">
+                    <p>{{(user$ | async)?.emailVerified ? 'Verified User' : 'Unverified User' }}</p>
+                    <br />
+                    <button (click)="logout()" class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> Logout</button>
+                </div>
+            </div>
+            <br/>
+            <div class="nav-tabs-navigation">
+                <div class="nav-tabs-wrapper">
+                  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+                    <li [ngbNavItem]="1">
+                      <a ngbNavLink>Orders</a>
+                      <ng-template ngbNavContent>
+                        <div class="row following" id="follows">
+                          <div class="col-md-6 ml-auto mr-auto">
+                            <h3 *ngIf="!(user$ | async).orders.length" class="text-muted">Nothing Here</h3>
+
+                              <!-- <ul class="list-unstyled follows">
+                                  <li>
+                                      <div class="row">
+                                          <div class="col-md-2 col-sm-2 ml-auto mr-auto">
+                                              <img src="./assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                          </div>
+                                          <div class="col-md-7 col-sm-4 ml-auto">
+                                              <h6>Flume<br/><small>Musical Producer</small></h6>
+                                          </div>
+                                          <div class="col-md-3 col-sm-2 ml-auto mr-auto">
+                                              <div class="form-check">
+                                                <label class="form-check-label">
+                                                  <input class="form-check-input" type="checkbox" value="" checked="">
+                                                  <span class="form-check-sign"></span>
+                                                </label>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </li>
+                                  <hr />
+                                  <li>
+                                      <div class="row">
+                                          <div class="col-md-2 col-sm-2 ml-auto mr-auto">
+                                              <img src="./assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                          </div>
+                                          <div class="col-md-7 col-sm-4 ml-auto">
+                                              <h6>Banks<br /><small>Singer</small></h6>
+                                          </div>
+                                          <div class="col-md-3 col-sm-2 ml-auto mr-auto">
+                                              <div class="form-check">
+                                                <label class="form-check-label">
+                                                  <input class="form-check-input" type="checkbox" value="" checked="">
+                                                  <span class="form-check-sign"></span>
+                                                </label>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </li>
+                              </ul> -->
+                          </div>
+                      </div>
+                      </ng-template>
+                    </li>
+                    <li [ngbNavItem]="2">
+                      <a ngbNavLink>Profile Details</a>
+                      <ng-template ngbNavContent>
+                        <h3 class="text-muted">Not developed  yet :(</h3>
+                        <br>
+                        <button class="btn btn-warning btn-round">Help Me</button>
+                      </ng-template>
+                    </li>
+                    <li [ngbNavItem]="3">
+                      <a ngbNavLink>Shipping Addresses</a>
+                      <ng-template ngbNavContent>
+                        <h3 class="text-muted">Not  yet :(</h3>
+                        <br>
+                      </ng-template>
+                    </li>
+                  </ul>
+                  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

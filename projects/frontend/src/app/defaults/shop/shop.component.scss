@@ -1,0 +1,55 @@
+
+.page-header {
+  min-height: 100vh !important;
+  max-height: 999px !important;
+
+  .filter::after {
+    background-color: rgba(0, 0, 100, 0.25) !important;
+  }
+}
+
+
+
+
+.card-categories {
+  z-index: 999;
+  position: relative;
+  padding: 15px;
+  top: -145px;
+  img {
+    max-height: 350px;
+  }
+
+  .magor-category{
+    cursor: pointer;
+  }
+}
+
+
+
+
+.promotions {
+  background-color: #eee;
+}
+.promo-img {
+  height: 530px;
+}
+
+.carousel ngb-carousel{
+  display: inline-block !important;
+  padding-right: 0px;
+  padding-left: 0px;
+
+  .card:not(.card-plain):hover {
+    transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+  }
+}
+
+
+ngb-carousel .product-category {
+  display: none;
+
+}

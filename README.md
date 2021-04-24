@@ -1,27 +1,31 @@
-# Starter2
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
 
-## Development server
+npm install bootstrap @ng-bootstrap/ng-bootstrap bootstrap-notify jquery moment ngx-toastr --save
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+npm install chart.js --save
 
-## Code scaffolding
+"allowedCommonJsDependencies": [
+              "chart.js",
+              "lodash"
+            ],
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+"styles": [
+              ng
+              "projects/frontend/src/assets/scss/paper-dashboard.scss",
+              "projects/frontend/src/assets/scss/paper-kit.scss",
+              "projects/frontend/src/assets/css/nucleo-icons.css",
+              "./node_modules/ngx-toastr/toastr.css",
+              "projects/frontend/src/styles.scss"
+            ],
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+npm install  jw-bootstrap-switch-ng2 ng2-nouislider nouislider popper.js —-save
 
-## Running unit tests
+npm install @angular/localize --save
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+ng add @ngrx/store 
+ng add @ngrx/effects 
+ng add @ngrx/router-store
+ng add @ngrx/schematics
+ng add @ngrx/store-devtools@3.2.4

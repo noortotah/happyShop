@@ -1,0 +1,180 @@
+
+<div
+  class="page-header"
+  data-parallax="true"
+  style="background-image: url('./assets/img/boutique.jpeg')"
+>
+  <div class="filter"></div>
+  <div class="container">
+    <div class="motto text-center">
+      <h1>Welcome To Our Boutique</h1>
+      <h3><b>Outfits that will make you comfortably beautiful.</b></h3>
+      <br />
+      <!-- <a href="`https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-outline-neutral btn-round"><i class="fa fa-play"></i>Watch video</a> -->
+      <!-- <button type="button" class="btn btn-outline-neutral btn-round">Download</button> -->
+    </div>
+  </div>
+</div>
+
+<section class="">
+  <div class="container">
+    <div class="row">
+      <div class="card col-8 card-categories">
+        <div class="card-columns">
+          <div class="magor-category"  [routerLink]="['/landing/shop-category']" [queryParams]="{search: '605df6a203ebd812f35eab18'}">
+            <img
+              class="card-img-top"
+              src="../../../../assets/img/man.jpg"
+              alt=""
+            />
+            <h4 class="card-title text-center">Men</h4>
+          </div>
+
+          <div class="magor-category" [routerLink]="['/landing/shop-category']" [queryParams]="{search: '605df69d03ebd812f35eab17'}">
+            <img
+              class="card-img-top"
+              src="../../../../assets/img/woman.jpg"
+              alt=""
+            />
+            <h4 class="card-title text-center">Women</h4>
+          </div>
+
+          <div class="magor-category"  [routerLink]="['/landing/shop-category']" [queryParams]="{search: '605df6a603ebd812f35eab19'}">
+            <img
+              class="card-img-top"
+              src="../../../../assets/img/kids.jpg"
+              alt=""
+            />
+            <h4 class="card-title text-center">Kids</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trending-products mb-5">
+  <div class="container">
+    <h2 class="h3 text-center mb-2">Trending products</h2>
+    <div class="card-columns">
+      <!-- <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-4" > -->
+        <app-product-card
+           *ngFor="let product of products$ | async; index as i"
+          [product]="product" ></app-product-card>
+
+      <!-- </div> -->
+
+
+    </div>
+    <div class="text-center pt-3"><a class="btn btn-outline-primary" [routerLink]="['/']">More products<i class="ml-1 nc-icon nc-minimal-right"></i></a></div>
+  </div>
+</section>
+
+
+<section class="promotions pt-5">
+  <div class="container">
+    <div class="row">
+      <a  [routerLink]="['/landing/shop']"
+          [queryParams]="{marked:'new-arrival'}"
+          class="col-6">
+        <div class="card text-white">
+          <img src="../../../../assets/img/new-arrival.jpg" class="card-img promo-img" alt="">
+          <div class="card-img-overlay d-flex align-items-end">
+            <a [routerLink]="['/']" class="btn btn-primary btn-sm col-6">Shop Now</a>
+          </div>
+        </div>
+      </a>
+
+      <a  [routerLink]="['/landing/shop']"
+          [queryParams]="{marked:'50offCoupon'}"
+          class="col-6">
+        <div class="card text-white">
+          <img src="../../../../assets/img/50off.jpg" class="card-img promo-img" alt="">
+          <div class="card-img-overlay d-flex align-items-start justify-content-end pr-5 pb-2">
+            <a [routerLink]="['/']" class="btn btn-primary btn-sm">Shop Now</a>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="carousel mt-5 pt-5">
+    <div class="container">
+      <h2 class="h3 text-center mb-2">Hoodies Collection</h2>
+      <div class="row">
+        <div class="">
+
+
+          <ngb-carousel
+            #carousel4
+            interval="0"
+            activeId="img-0"
+            *ngIf="(products$| async).length"
+            [showNavigationArrows]="false"
+            [showNavigationIndicators]="false"
+            class="col-md-3">
+              <ng-template ngbSlide *ngFor="let hoodie of hoodies$ | async; index as index" id="img-{{index}}">
+                  <app-product-card [product]="hoodie" [isCarousel]="true"></app-product-card>
+              </ng-template>
+          </ngb-carousel>
+
+          <ngb-carousel
+            #carousel2
+            interval="0"
+            activeId="img-1"
+            *ngIf="(hoodies$ | async).length"
+            [showNavigationArrows]="false"
+            [showNavigationIndicators]="false"
+            class="col-md-3">
+              <ng-template ngbSlide *ngFor="let hoodie of hoodies$ | async; index as index" id="img-{{index}}">
+                <app-product-card [product]="hoodie" [isCarousel]="true"></app-product-card>
+              </ng-template>
+
+          </ngb-carousel>
+
+          <ngb-carousel
+            #carousel3
+            interval="0"
+            *ngIf="(hoodies$ | async).length"
+            [showNavigationArrows]="false"
+            [showNavigationIndicators]="false"
+            activeId="img-2"
+
+            class="col-md-3">
+            <ng-template ngbSlide *ngFor="let hoodie of hoodies$ | async; index as index" id="img-{{index}}">
+              <app-product-card [product]="hoodie" [isCarousel]="true"></app-product-card>
+            </ng-template>
+
+          </ngb-carousel>
+
+          <ngb-carousel
+          #carousel1="ngbCarousel"
+          interval="0"
+
+          activeId="img-3"
+          *ngIf="(hoodies$ | async).length"
+          [showNavigationArrows]="false"
+          [showNavigationIndicators]="false"
+          class="col-md-3">
+          <ng-template ngbSlide *ngFor="let hoodie of hoodies$ | async; index as index" id="img-{{index}}">
+            <app-product-card [product]="hoodie" [isCarousel]="true"></app-product-card>
+          </ng-template>
+
+        </ngb-carousel>
+
+
+
+
+        </div>
+
+
+      </div>
+    </div>
+</section>
+
+

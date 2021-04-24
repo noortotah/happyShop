@@ -1,0 +1,50 @@
+<div
+class="page-header"
+data-parallax="true"
+>
+</div>
+
+<section class="items-section pt-5">
+  <div class="container">
+    <div class="row">
+      <div class="wishlist col col-sm-10 mx-auto">
+        <div class="d-flex justify-content-between align-items-center pt-3 pb-2 pb-sm-5 mt-1"
+            >
+          <h2 class="h6 text-light mb-0">Wishlist</h2>
+          <a [routerLink]="['/']" class="btn btn-outline-primary btn-sm pl-2" ><i class="czi-arrow-left mr-2"></i>Continue shopping</a>
+        </div>
+
+
+        <table *ngIf="wishListItems.length" class="table table-inverse mt-5 mt-sm-0">
+          <thead class="thead-inverse">
+            <tr>
+              <th>Product</th>
+              <th>Details</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of wishListItems; index as index">
+                <td scope="row">
+                  <img src="../../../../assets/img/products/{{item.product.images.main}}" class="card-img product-img" alt="">
+                   {{item.product.title}}
+                </td>
+                <td class="align-middle"><p *ngFor="let variationSection of item.selectedVariation"> {{variationSection.value}}</p></td>
+                <td class="align-middle">
+                  <a class="btn btn-link btn-danger" role="button" (click)="removeFormWishlist(item)"><fa-icon [icon]="trashAlt"></fa-icon> Remove</a>
+                </td>
+              </tr>
+
+            </tbody>
+        </table>
+
+        <div *ngIf="!wishListItems.length" class="text-center">
+          <h3>Empty Wishlist</h3>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</section>

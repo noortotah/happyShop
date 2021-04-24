@@ -1,0 +1,178 @@
+<div class="default-wrapper">
+  <div class="modal-header h5 text-secondary">
+    <h5 class="product-title">{{ product.title }}</h5>
+  </div>
+  <!-- <h1>{{hero}} </h1> -->
+  <div class="modal-body">
+    <div class="shopping-card">
+      <div class="row no-gutters h-100">
+        <div class="col-md-3 pr-2">
+          <img
+            src="{{ imagePath + product.images.main }}"
+            class="card-img product-img"
+            alt="..."
+          />
+        </div>
+        <div class="col-md-9">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-7">
+                <h5 class="mb-0">{{ product.title }}</h5>
+                <small *ngIf="product.categories[0]" class="text-muted">{{
+                  product.categories[0]
+                }}</small>
+              </div>
+
+              <div class="col-5 product-price pt-2">
+                <span class="text-dark" *ngIf="product.outofStock"
+                  >Out of Stock</span
+                >&nbsp;
+                <span class="text-dark" *ngIf="!product.outofStock"
+                  >${{ product.pricing.price }} &nbsp;</span
+                >
+                <del
+                  class="text-muted text-primary"
+                  *ngIf="!product.outofStock && product.pricing.oldPrice"
+                  >${{ product.pricing.oldPrice }}</del
+                >
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col text-muted text-justify">
+                {{ product.description }}
+              </div>
+            </div>
+
+
+
+            <!-- VARIATIONS -->
+            <div class="variations-section"  *ngFor="let variationSection of product.variations; index as Vindex">
+              <div class="row">
+                <div class="col">
+                  <div
+                    class="text-center pb-2 row d-flex justify-content-center mt-5"
+                    *ngIf="variationSection.type == 'colors' "
+                  >
+                    <div
+                      class="mx-1 mb-2"
+                      *ngFor="let color of variationSection.values; index as index"
+                    >
+                      <input
+                        class="custom-control-input"
+                        type="radio"
+                        name="color-{{ product.id }}"
+                        id="quick-{{ product.id }}-{{ color }}-{{ index }}-{{Vindex}}"
+                        value="{{ color }}"
+                        [checked]="selectedVariation[Vindex].id == index"
+                        (change)="changeVariation($event)"
+                      />
+                      <label
+                        class="custom-option-label rounded-circle"
+                        for="quick-{{ product.id }}-{{ color }}-{{ index }}-{{Vindex}}"
+                        ><span
+                          class="custom-option-color rounded-circle"
+                          [ngStyle]="{ 'background-color': color }"
+                        ></span
+                      ></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col mb-2 mt-3">
+                  <div
+                    class="d-flex mb-2"
+                    *ngIf="variationSection.type === 'dropbox'"
+                  >
+                    <select
+                      class="col custom-select custom-select-sm mr-2"
+                      (change)="changeVariation($event)"
+                    >
+                      <option
+                        *ngFor="
+                          let variation of variationSection.values;
+                          index as index
+                        "
+                        value="{{ variation }}"
+                        id="quick-{{ product.id }}-{{ variation }}-{{ index }}-{{Vindex}}"
+                        [selected]="selectedVariation[Vindex].id === index"
+                      >
+                        {{ variation }}
+                      </option>
+                    </select>
+                    <!-- <button
+                      class="btn btn-primary btn-sm"
+                      type="button"
+                      data-toggle="toast"
+                      data-target="#cart-toast"
+                      (click)="addToCard()"
+                    >
+                      <i class="nc-icon nc-cart-simple mr-1"></i>Add to Cart
+                    </button> -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div
+                    class="text-center pb-2 row d-flex justify-content-center"
+                    *ngIf="variationSection.type === 'boxes'"
+                  >
+                    <div
+                      class="mb-2 mx-1"
+                      *ngFor="let variation of variationSection.values; index as index"
+                    >
+                      <input
+                        class="custom-control-input"
+                        type="radio"
+                        name="variation-{{ product.id }}"
+                        value="{{ variation }}"
+                        id="quick-{{ product.id }}-{{ variation }}-{{ index }}-{{Vindex}}"
+                        [checked]="index === 0"
+                        (change)="changeVariation($event)"
+                      />
+                      <label
+                        class="custom-option-label"
+                        for="quick-{{ product.id }}-{{ variation }}-{{ index }}-{{Vindex}}"
+                        >{{ variation }}</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+            <!-- VARIATIONS -->
+            <div class="row">
+              <button
+                *ngIf="!product.outofStock"
+                class="btn btn-primary btn-sm col ml-3"
+                type="button"
+                data-toggle="toast"
+                data-target="#cart-toast"
+                (click)="addToCard()"
+              >
+                <i class="nc-icon nc-cart-simple mr-1"></i>Add to Cart
+              </button>
+              <button
+                *ngIf="!product.outofStock"
+                class="btn btn-danger btn-sm col mr-3"
+                type="button"
+                data-toggle="toast"
+                data-target="#cart-toast"
+              >
+                <i class="nc-icon nc-credit-card mr-1"></i>Buy Now
+              </button>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

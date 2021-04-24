@@ -1,0 +1,220 @@
+<div class="default">
+  <div class="topper p-2 text-light d-none d-sm-block">
+    <div class="row px-3">
+      <div class="col-sm">
+        <p>
+          <i class="nc-icon nc-support-17"></i>&nbsp; Support
+          <small>(00) 33 169 7720</small>
+        </p>
+      </div>
+      <div class="col-sm text-md-center">
+        Free shipping on orders over $250!
+      </div>
+      <div class="col-sm text-md-right">
+        <p class="text-white">
+          <i class="nc-icon nc-pin-3"></i>&nbsp; Order Tracking
+        </p>
+      </div>
+    </div>
+  </div>
+  <nav
+
+    id="navnav"
+    class="navbar navbar-expand-lg fixed-top navbar-transparent mt-sm-5"
+    color-on-scroll="500"
+  >
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand text-primary" [routerLink]="['/']"
+          ><strong id="happy-word" class="text-light">Happy</strong>Shop</a
+        >
+        <button
+          class="navbar-toggler navbar-burger"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarToggler"
+          aria-controls="navbarTogglerDemo02"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+
+
+        >
+          <span class="nc-icon nc-tile-56"></span>
+      </button>
+
+      </div>
+
+      <div class="navbar-collapse" id="navbarToggler">
+
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a [routerLink]="['/landing/shop']"  class="nav-link">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/landing/shop-category']" [queryParams]="{search: '60587caae9bcdee4aba0c22b'}" class="nav-link">DRESSES</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/landing/shop-category']" [queryParams]="{search: '60587ebfe9bcdee4aba0c237'}" class="nav-link">SHOES</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/landing/shop-category']" [queryParams]="{search: '605908fdb9f595091a1b612b'}" class="nav-link">SPORT</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/landing/shop-category']" [queryParams]="{search: '60587ccae9bcdee4aba0c232'}" class="nav-link">ACCESSORIES</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a [routerLink]="['/landing/wishlist']" class="nav-link">
+              <span class="wishlist-badge badge badge-pill badge-primary">
+                {{(wishlistItems$ | async).length}}
+              </span>
+              WishList
+          </a>
+            <!-- <div ngbDropdown class="dropdown">
+              <a
+                ngbDropdownToggle
+                class="nav-link dropdown-toggle"
+                role="button"
+                id="dropdownWishlistLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span class="badge badge-pill badge-danger">{{
+                  wishlistItems.length
+                }}</span>
+
+                  <i class="nc-icon nc-favourite-28 pb-2"></i>
+                  Wishlist
+
+              </a>
+              <ul
+                *ngIf="wishlistItems.length"
+                ngbDropdownMenu
+                class="dropdown-menu"
+                aria-labelledby="dropdownWishlistLink"
+              >
+                <li
+                  class="shopping-card"
+                  *ngFor="let product of wishlistItems"
+                >
+                  <div class="row no-gutters h-100 d-flex align-items-center">
+                    <div class="col-md-3 pl-2">
+                      <img
+                        src="../../../../assets/img/products/{{
+                          product.images.main
+                        }}"
+                        class="card-img"
+                        alt=""
+                      />
+                    </div>
+                    <div class="col-md-9">
+                      <div class="card-body">
+                        <p class="card-title">
+                          {{ product.title }}
+                        </p>
+
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="px-3 pb-2 bg-light">
+                  <hr />
+                  <h6 class="text-muted">SubTotal : $ {{ getTotal() }}</h6>
+                  <a [routerLink]="['/landing/wishlist']" class="btn btn-primary d-block mb-2"
+                    ><i class="nc-icon nc-layout-11 mr-1"></i>Expand WishList</a
+                  >
+
+                </li>
+
+
+              </ul>
+            </div> -->
+          </li>
+          <li class="col nav-item">
+            <a *ngIf="!isAdmin" [routerLink]="['/auth/profile']" class="row nav-link">
+              <i class="nc-icon nc-single-02"></i>
+                <small>Hello, Sign in</small><br/>My Account
+
+              </a>
+              <a *ngIf="isAdmin" [routerLink]="['/admin/dashboard']" class="row nav-link">
+                <i class="nc-icon nc-single-02"></i>
+                  <small>Hello, Sign in</small><br/>My Account
+
+                </a>
+          </li>
+          <li class="nav-item">
+            <div ngbDropdown class="dropdown">
+              <a
+                ngbDropdownToggle
+                class="nav-link dropdown-toggle"
+                role="button"
+                id="dropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span class="shopping-badge badge badge-pill badge-danger">{{
+                  (shoppingCartItems$ | async).length
+                }}</span>
+                <i class="nc-icon nc-cart-simple"></i> <small> My Cart</small>
+                <br />
+                <b>${{ getTotal() | async }}.<small>00</small></b>
+              </a>
+              <ul
+                *ngIf="(shoppingCartItems$ | async).length"
+                ngbDropdownMenu
+                class="dropdown-menu"
+                aria-labelledby="dropdownMenuLink"
+              >
+                <li
+                  class="shopping-card"
+                  *ngFor="let item of shoppingCartItems$ | async"
+                >
+                  <div class="row no-gutters h-100 d-flex align-items-center">
+                    <div class="col-md-3 pl-2">
+                      <img
+                        src="{{
+                          imagePath + item.product.images.main
+                        }}"
+                        class="card-img"
+                        alt=""
+                      />
+                    </div>
+                    <div class="col-md-9">
+                      <div class="card-body">
+                        <p class="card-title">
+                          {{ item.product.title }} -
+                          {{ item.selectedVariation.value }}
+                        </p>
+                        <p class="card-text">
+                          <small class="text-muted"
+                            >${{ item.product.pricing.price }} x 1</small
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="px-3 pb-2 bg-light">
+                  <hr />
+                  <h6 class="text-muted">SubTotal : $ {{ getTotal() | async }}</h6>
+                  <a [routerLink]="['/landing/shopping-cart']" class="btn btn-primary d-block mb-2"
+                    ><i class="nc-icon nc-layout-11 mr-1"></i>Expand Cart</a
+                  >
+                  <a [routerLink]="['/']" class="btn btn-danger d-block mt-0"
+                    ><i class="nc-icon nc-credit-card mr-1"></i>Checkout</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</div>

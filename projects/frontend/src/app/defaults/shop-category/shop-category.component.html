@@ -1,0 +1,106 @@
+<div
+class="page-header"
+data-parallax="true"
+>
+<div class="filter"></div>
+</div>
+
+<section class="items-section pt-5">
+  <div class="container-fluid">
+    <div class="row">
+      <aside class="col col-sm-3">
+        <div class="card">
+          <div class="card-body text-left">
+            <h2 class="h6 mb-3 pb-1">Categories</h2>
+
+
+            <ngb-accordion [closeOthers]="true" activeIds="static" [animation]="true">
+              <ngb-panel *ngFor="let category of categories$ | async"
+                        id="static-{{category._id}}"
+                        cardClass="card-plain cartegories-card mb-0" >
+
+                        <ng-template ngbPanelHeader let-opened="opened" >
+                          <div class="d-flex align-items-center justify-content-between">
+                            <button ngbPanelToggle class="btn btn-link container-fluid pl-0"
+                            [routerLink]="['/landing/shop-category']"
+                                  [queryParams]="{search:category._id}"
+                                  routerLinkActive="active"
+                                  [routerLinkActiveOptions] = "{exact: true}"
+                            >
+                              <h2 routerLinkActive="active" class="float-left">{{category.title}}
+
+                              </h2>
+                              <fa-icon *ngIf="category.subCategories && category.subCategories.length" class="float-right" [icon]="opened?faArrowAltCircleUp: faArrowAltCircleDown"></fa-icon>
+
+                            </button>
+
+                          </div>
+                        </ng-template>
+
+                        <ng-template
+                          ngbPanelContent
+                          *ngIf="category.subCategories && category.subCategories.length"
+                        >
+                          <table class="table">
+
+                            <tbody>
+                              <tr>
+                                <td
+                                [routerLink]="['/landing/shop-category']"
+                                [queryParams]="{search:category._id}"
+
+                                >View All</td>
+                              </tr>
+                              <tr *ngFor="let sub of category.subCategories">
+                                <td
+                                  scope="row"
+                                  [routerLink]="['/landing/shop-category']"
+                                  [queryParams]="{search:sub._id}"
+                                  routerLinkActive="active"
+                                  [routerLinkActiveOptions] = "{exact: true}"
+                                >
+                                  {{sub.title}}
+
+                                </td>
+                              </tr>
+
+                            </tbody>
+                          </table>
+                        </ng-template>
+              </ngb-panel>
+
+
+
+            </ngb-accordion>
+          </div>
+
+
+        </div>
+
+      </aside>
+
+      <div class="shopping-cart col col-sm-9">
+        <div class="d-flex justify-content-between align-items-center pt-3 pb-2 pb-sm-5 mt-1"
+            >
+          <!-- <h2 class="h6 text-light mb-0">{{CategoryName}}</h2> -->
+          <a class="btn btn-outline-primary btn-sm pl-2" [routerLink]="['/']" ><i class="czi-arrow-left mr-2"></i>Continue shopping</a>
+        </div>
+
+        <h2 class="h3 text-center mb-2 mt-2" *ngIf="(products$ | async).length">Trending products</h2>
+        <h2 class="h3 text-center mb-2 mt-2" *ngIf="!(products$ | async).length">No Products</h2>
+        <div class="card-columns">
+          <!-- <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-4" > -->
+            <app-product-card
+               *ngFor="let product of products$ | async; index as i"
+              [product]="product" ></app-product-card>
+
+          <!-- </div> -->
+
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>

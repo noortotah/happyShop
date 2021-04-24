@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title float-left"> Categories List</h4>
+        <a  class="btn btn-primary float-right" (click)="openAddCategory()" role="button">Add Category</a>
+      </div>
+      <div class="card-body"  *ngIf="!(categories$ | async).length">
+        <h2>No Categories</h2>
+      </div>
+      <div class="card-body"   *ngIf="(categories$ | async).length">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                Img
+              </th>
+              <th>
+                Title
+              </th>
+              <th>
+                # of Sub Cat.
+              </th>
+              <th>
+                # of Sub Products
+              </th>
+              <th class="text-right">
+                Actions
+              </th>
+            </thead>
+            <tbody>
+
+              <tr *ngFor="let category of categories$ | async; index as index">
+                <td>
+                  <img style="width: 50px;" src="{{ category.img ? category.img : '../../../assets/img/no-cateogry.png'}}" alt="">
+
+                  <!-- <img src="{{ " alt="" style="width:50px"> -->
+                  <!-- {{category.img}} -->
+                </td>
+                <td>
+                  {{category.title}}
+                </td>
+                <td>
+                  {{category.subCategories?.length}}
+                </td>
+                <td>
+                  Not calc yet <fa-icon class="text-danger" [icon]="faSadTear"></fa-icon>
+                </td>
+                <td class="text-right">
+                  <a (click)="openEditCategory(category)" class="btn btn-primary mr-2"  role="button" click>Edit</a>
+                  <a (click)="deleteCategory(category._id)" class="btn btn-danger" role="button">Delete</a>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

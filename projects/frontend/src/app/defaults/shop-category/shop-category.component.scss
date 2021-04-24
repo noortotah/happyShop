@@ -1,0 +1,66 @@
+.page-header{
+  min-height: initial !important;
+  max-height: initial !important;
+  background-image: url('../../../assets/img/family-background.jpg');
+  background-position: 0px -90px !important;
+  background-repeat: no-repeat;
+  height: 250px;
+  background-color: #777;
+  .filter::after {
+    background-color: rgba(0, 0, 100, 0.4) !important;
+  }
+}
+.items-section {
+  position: relative;
+  top: -140px;
+
+  .shopping-cart {
+    z-index: 999;
+  }
+}
+
+
+.cartegories-card {
+  h2 {
+    font-size: 1rem;
+    margin-top: 0px;
+    font-weight: 500;
+  }
+
+  .ng-fa-icon {
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+  .card-header {
+    background-color: inherit;
+    border-bottom-color: white;
+  }
+
+  .card-body {
+    padding-top: 0px;
+
+    table {
+      tr {
+        .active {
+          font-weight: 500 !important;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+        &:focus{
+          outline: none;
+        }
+        td {
+          &:focus{
+            outline: none;
+          }
+          border: 0px;
+          padding: 5px;
+        }
+      }
+  }
+  }
+}

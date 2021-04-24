@@ -1,0 +1,962 @@
+//Product Document
+{
+  id: "somestringId",
+  sku: "111445GB3",
+  title: "Simsong One mobile phone",
+  description: "The greatest Onedroid phone on the market .....",
+
+  manufacture_details: {
+    model_number: "A123X",
+    release_date: new ISODate("2020-05-17T08:14:15.656Z")
+  },
+
+  shipping_details: {
+    weight: 350,
+    width: 10,
+    height: 10,
+    depth: 1
+  },
+
+  quantity: 99,
+
+  pricing: {
+    price: 1000,
+    oldPrice: 3000
+  },
+
+  images : {
+    main: "image",
+    catalog: ["image1", "image2", "image3"]
+  },
+
+  variation: [
+    {
+      type: "boxes",
+      name: "",
+      values: ["7.5", "8", "8.5", "9"]
+    },
+    {
+      type: "colors",
+      name: "",
+      values: ["#eaeaeb", "#d1dceb", "#f4e6a2", "#f3dcff"]
+    }
+  ],
+
+  variation_quantity : [
+
+  ],
+
+  categories: ["id1", "id2"]
+}
+
+
+//Category Document
+{
+  title: "somename",
+  image : "",
+  subCategories: [
+    {title:"", image: ""},
+    {title:"", image: ""}
+  ]
+}
+
+//Cart Document
+{
+  _id: "",
+  user_id: "refer to a user id",
+
+  quantity: 2,
+  total: 2000,
+  currency : "USDA"
+
+  products: [
+    productId, productId
+  ]
+}
+
+
+//order Document
+{
+  created_on: new ISODate("2020-05-17T08:14:15.656Z"),
+  status: "Completed",
+  shipping: {
+    customer: "Peter P Peterson",
+    address: "Longroad 1343",
+    city: "Peterburg",
+    region: "",
+    state: "PE",
+    country: "Peteonia",
+    delivery_notes: "Leave at the gate",
+
+    tracking: {
+      company: "ups",
+      tracking_number: "22122X211SD",
+      statusText: "ontruck",
+      status: [
+        {update: "", created_on: new ISODate("2020-05-17T08:14:15.656Z"), }
+      ]
+      estimated_delivery: new ISODate("2012-05-17T08:14:15.656Z")
+    },
+  },
+
+  payment: {
+    method: "visa",
+    transaction_id: "2312213312XXXTD"
+  },
+
+  products: [
+    { quantity: 2, sku:"111445GB3", title: "Simsong mobile phone", unit_cost:1000, currency:"USDA"}
+  ]
+}
+
+
+
+
+ /*
+  categories : [
+    {id: '1', title: 'Shoes', subCategories: [
+      // {id: '1', title: 'View All'},
+      {id: '2', title: 'Pumps & High Heels'},
+      {id: '3', title: 'Ballerinas & Flats'},
+      {id: '4', title: 'Sandals'},
+      {id: '5', title: 'Sneakers'},
+      {id: '6', title: 'Boots'},
+    ]},
+    {id: '2', title: 'Clothing', subCategories: [
+      // {id: '1', title: 'View All'},
+      {id: '2', title: 'Blazers & Suits'},
+      {id: '3', title: 'Blouses'},
+      {id: '4', title: 'Cardigans & Jumpers'},
+      {id: '5', title: 'Dresses'},
+      {id: '6', title: 'Hoodies & Sweatshirts'},
+      {id: '7', title: 'Jackets & Coats'},
+    ]},
+    {id: '3', title: 'Bags', subCategories: [
+      {id: '2', title: 'Handbags'},
+      {id: '3', title: 'Backpacks'},
+      {id: '4', title: 'Wallets'},
+      {id: '5', title: 'Luggage'},
+      {id: '6', title: 'Laptop Bags'},
+      {id: '7', title: 'Sport Bags'},
+    ]},
+    {id: '4', title: 'Sunglasses', subCategories: [
+      {id: '2', title: 'Fashion Sunglasses'},
+      {id: '4', title: 'Sport Sunglasses'},
+      {id: '5', title: 'Classic Sunglasses'},
+    ]},
+    {id: '5', title: 'Watches'},
+    {id: '6', title: 'Accessories', subCategories: [
+      {id: '4', title: 'Belts'},
+      {id: '4', title: 'Hats'},
+      {id: '4', title: 'Jewelry'},
+      {id: '4', title: 'Cosmetics'},
+    ]},
+
+  ],*/
+
+
+
+
+  /*
+  products: [
+    {
+      "sku": "do39344i",
+      "title": "Women Colorblock Sneakers",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.",
+      "images" : {
+        "main": "01.jpg",
+        "catalog": []
+      },
+      "manufacture_details": {
+        "model_number": "A123X",
+        "release_date": null
+      },
+      "shipping_details": {
+        "weight": 350,
+        "width": 10,
+        "height": 10,
+        "depth": 1
+      },
+      "variations": [
+        {
+          "type": "boxes",
+          "name": "size",
+          "values": ["7.5", "8", "8.5", "9"]
+        },
+      ],
+      "variation_quantity" : [
+
+      ],
+      "quantity": 999,
+      "categories": ["Sneakers & Keds"],
+      "pricing": {"price": 126},
+      "outofStock": false
+    },
+    {
+      "sku": "do39344i",
+      "title": "Cotton Lace Blouse",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.",
+      "images" : {
+        "main": "02.jpg",
+        "catalog": []
+      },
+      "manufacture_details": {
+        "model_number": "A123X",
+        "release_date": null
+      },
+      "shipping_details": {
+        "weight": 350,
+        "width": 10,
+        "height": 10,
+        "depth": 1
+      },
+      "variations": [
+        {
+          "type": "dropbox",
+          "name": "size",
+          "values": ["XS", "S", "M", "L", "XL"]
+        },
+        {
+          "type": "colors",
+          "name": "colors",
+          "values": ["#eaeaeb", "#d1dceb", "#f4e6a2", "#f3dcff"]
+        }
+      ],
+      "variation_quantity" : [
+
+      ],
+      "quantity": 999,
+      "categories": ["Women’s T-shirt"],
+      // variationType: 'dropbox',
+      // variations: ['XS', 'S', 'M', 'L', 'XL'],
+      // category: 'Women’s T-shirt',
+      "pricing": {"price": 27},
+      "outofStock": false,
+      // colors: ['#eaeaeb', '#d1dceb', '#f4e6a2', '#f3dcff']
+    },
+    {
+      "sku": "do39344i",
+      "title": "Polarized Sunglasses",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.",
+      "images" : {
+        "main": "05.jpg",
+        "catalog": []
+      },
+      "manufacture_details": {
+        "model_number": "A123X",
+        "release_date": null
+      },
+      "shipping_details": {
+        "weight": 350,
+        "width": 10,
+        "height": 10,
+        "depth": 1
+      },
+      "variations": [
+
+      ],
+      "variation_quantity" : [
+
+      ],
+      "quantity": 999,
+      "categories": ["Men\'s Sunglasses"],
+      // variationType: '',
+      // variations: [],
+      // category: 'Men\'s Sunglasses',
+      "pricing": {"price": 23, "oldPrice" : 30},
+
+      "outofStock": true
+    },
+    {
+      "sku": "do39344i",
+      "title": "TH Jeans City Backpack",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.",
+      "images" : {
+        "main": "06.jpg",
+        "catalog": []
+      },
+      "manufacture_details": {
+        "model_number": "A123X",
+        "release_date": null
+      },
+      "shipping_details": {
+        "weight": 350,
+        "width": 10,
+        "height": 10,
+        "depth": 1
+      },
+      "variations": [
+        {
+          "type": "boxes",
+          "name": "size",
+          "values": ["XS", "S", "M", "L", "XL"]
+        },
+      ],
+      "variation_quantity" : [
+
+      ],
+      "quantity": 999,
+      "categories": ["Sportswear"],
+      // variationType: 'boxes',
+      // variations: ['XS', 'S', 'M', 'L', 'XL'],
+      // category: 'Sportswear',
+      "pricing": {"price": 64},
+      "outofStock": false
+    },
+    {
+      "sku": "do39344i",
+      "title": "Women Colorblock Sneakers",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.",
+      "images" : {
+        "main": "01.jpg",
+        "catalog": []
+      },
+      "manufacture_details": {
+        "model_number": "A123X",
+        "release_date": null
+      },
+      "shipping_details": {
+        "weight": 350,
+        "width": 10,
+        "height": 10,
+        "depth": 1
+      },
+      "variations": [
+        {
+          "type": "boxes",
+          "name": "size",
+          "values": ["7.5", "8", "8.5", "9"]
+        },
+      ],
+      "variation_quantity" : [
+
+      ],
+      "quantity": 999,
+      "categories": ["Sneakers & Keds"],
+      // variationType: 'boxes',
+      // variations: ['7.5', '8', '8.5', '9'],
+      // category: 'Sneakers & Keds',
+      "pricing": {"price": 154},
+      "outofStock": false
+    },
+    {
+      id: '6',
+      sku: 'do39344i',
+      title: 'Cotton Lace Blouse',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.',
+      images : {
+        main: '02.jpg',
+        catalog: []
+      },
+      "manufacture_details": {
+        "model_number": "A123X",
+        "release_date": null
+      },
+      "shipping_details": {
+        "weight": 350,
+        "width": 10,
+        "height": 10,
+        "depth": 1
+      },
+      variations: [
+        {
+          type: "dropbox",
+          name: "size",
+          values: ['XS', 'S', 'M', 'L', 'XL']
+        },
+        {
+          type: "colors",
+          name: "colors",
+          values: ['#eaeaeb', '#d1dceb', '#f4e6a2', '#f3dcff']
+        }
+      ],
+      variation_quantity : [
+
+      ],
+      quantity: 999,
+      categories: ["id1", "id2"],
+      // variationType: 'dropbox',
+      // variations: ['XS', 'S', 'M', 'L', 'XL'],
+      // category: 'Women’s T-shirt',
+      pricing: {price: 28, oldPrice: 38},
+      outofStock: false,
+      // colors: ['#eaeaeb', '#d1dceb', '#f4e6a2', '#f3dcff']
+    },
+    {
+      id: '7',
+      sku: 'do39344i',
+      title: 'Polarized Sunglasses',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.',
+      images : {
+        main: '05.jpg',
+        catalog: []
+      },
+      "manufacture_details": {
+        "model_number": "A123X",
+        "release_date": null
+      },
+      "shipping_details": {
+        "weight": 350,
+        "width": 10,
+        "height": 10,
+        "depth": 1
+      },
+      variations: [
+
+      ],
+      variation_quantity : [
+
+      ],
+      quantity: 999,
+      categories: ['Men\'s Sunglasses'],
+      // variationType: '',
+      // variations: [],
+      // category: 'Men\'s Sunglasses',
+      pricing: {price: 22, oldPrice : 30},
+      outofStock: true
+    },
+    {
+      id: '8',
+      sku: 'do39344i',
+      title: 'TH Jeans City Backpack',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.',
+      images : {
+        main: '06.jpg',
+        catalog: []
+      },
+      "manufacture_details": {
+        "model_number": "A123X",
+        "release_date": null
+      },
+      "shipping_details": {
+        "weight": 350,
+        "width": 10,
+        "height": 10,
+        "depth": 1
+      },
+      variations: [
+        {
+          type: "boxes",
+          name: "size",
+          values: ['XS', 'S', 'M', 'L', 'XL']
+        },
+      ],
+      variation_quantity : [
+
+      ],
+      quantity: 999,
+      categories: ['Sportswear'],
+      // variationType: 'boxes',
+      // variations: ['XS', 'S', 'M', 'L', 'XL'],
+      // category: 'Sportswear',
+      pricing: {price: 68},
+      outofStock: false
+    },
+    {
+      "sku":"do39344i",
+"title":"TH Jeans City Backpack",
+"description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.",
+"images":{
+   "main":"06.jpg",
+   "catalog":[
+
+   ]
+},
+"manufacture_details":{
+   "model_number":"A123X",
+   "release_date":null
+},
+"shipping_details":{
+   "weight":350,
+   "width":10,
+   "height":10,
+   "depth":1
+},
+"variations":[
+   {
+      "type":"boxes",
+      "name":"size",
+      "values":[
+         "XS",
+         "S",
+         "M",
+         "L",
+         "XL"
+      ]
+   }
+],
+"variation_quantity":[
+
+],
+"quantity":999,
+"categories":[
+   "Sportswear"
+],
+"pricing":{
+   "price":68
+},
+"outofStock":false
+    },
+    {
+      "sku":"do39344i",
+"title":"Women Hooded Top",
+"description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.",
+"images":{
+   "main":"20.jpg",
+   "catalog":[
+
+   ]
+},
+"manufacture_details":{
+   "model_number":"A123X",
+   "release_date":null
+},
+"shipping_details":{
+   "weight":350,
+   "width":10,
+   "height":10,
+   "depth":1
+},
+"variations":[
+   {
+      "type":"boxes",
+      "name":"size",
+      "values":[
+         "XS",
+         "S",
+         "M",
+         "L",
+         "XL"
+      ]
+   }
+],
+"variation_quantity":[
+
+],
+"quantity":999,
+"categories":[
+   "Hoodies & Sweatshirts"
+],
+"pricing":{
+   "price":26
+},
+"outofStock":false
+    },
+    {
+      "sku":"do39344i",
+"title":"Women Hooded Top",
+"description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.",
+"images":{
+   "main":"21.jpg",
+   "catalog":[
+
+   ]
+},
+"manufacture_details":{
+   "model_number":"A123X",
+   "release_date":null
+},
+"shipping_details":{
+   "weight":350,
+   "width":10,
+   "height":10,
+   "depth":1
+},
+"variations":[
+   {
+      "type":"boxes",
+      "name":"size",
+      "values":[
+         "XS",
+         "S",
+         "M",
+         "L",
+         "XL"
+      ]
+   }
+],
+"variation_quantity":[
+
+],
+"quantity":999,
+"categories":[
+   "Hoodies & Sweatshirts"
+],
+"pricing":{
+   "price":26
+},
+"outofStock":false
+    },
+    {
+      "sku":"do39344i",
+"title":"Women Hooded Top",
+"description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.",
+"images":{
+   "main":"22.jpg",
+   "catalog":[
+
+   ]
+},
+"manufacture_details":{
+   "model_number":"A123X",
+   "release_date":null
+},
+"shipping_details":{
+   "weight":350,
+   "width":10,
+   "height":10,
+   "depth":1
+},
+"variations":[
+   {
+      "type":"boxes",
+      "name":"size",
+      "values":[
+         "XS",
+         "S",
+         "M",
+         "L",
+         "XL"
+      ]
+   }
+],
+"variation_quantity":[
+
+],
+"quantity":999,
+"categories":[
+   "Hoodies & Sweatshirts"
+],
+"pricing":{
+   "price":26
+},
+"outofStock":false
+    },
+    {
+      "sku":"do39344i",
+"title":"Women Hooded Top",
+"description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.",
+"images":{
+   "main":"51.jpg",
+   "catalog":[
+
+   ]
+},
+"manufacture_details":{
+   "model_number":"A123X",
+   "release_date":null
+},
+"shipping_details":{
+   "weight":350,
+   "width":10,
+   "height":10,
+   "depth":1
+},
+"variations":[
+   {
+      "type":"boxes",
+      "name":"size",
+      "values":[
+         "XS",
+         "S",
+         "M",
+         "L",
+         "XL"
+      ]
+   }
+],
+"variation_quantity":[
+
+],
+"quantity":999,
+"categories":[
+   "Hoodies & Sweatshirts"
+],
+"pricing":{
+   "price":26
+},
+"outofStock":false
+    },
+    {
+      "sku":"do39344i",
+"title":"Women Hooded Top",
+"description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.",
+"images":{
+   "main":"52.jpg",
+   "catalog":[
+
+   ]
+},
+"manufacture_details":{
+   "model_number":"A123X",
+   "release_date":null
+},
+"shipping_details":{
+   "weight":350,
+   "width":10,
+   "height":10,
+   "depth":1
+},
+"variations":[
+   {
+      "type":"boxes",
+      "name":"size",
+      "values":[
+         "XS",
+         "S",
+         "M",
+         "L",
+         "XL"
+      ]
+   }
+],
+"variation_quantity":[
+
+],
+"quantity":999,
+"categories":[
+   "Hoodies & Sweatshirts"
+],
+"pricing":{
+   "price":26
+},
+"outofStock":false
+    },
+    {
+      "sku":"do39344i",
+"title":"Women Hooded Top",
+"description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.",
+"images":{
+   "main":"53.jpg",
+   "catalog":[
+
+   ]
+},
+"manufacture_details":{
+   "model_number":"A123X",
+   "release_date":null
+},
+"shipping_details":{
+   "weight":350,
+   "width":10,
+   "height":10,
+   "depth":1
+},
+"variations":[
+   {
+      "type":"boxes",
+      "name":"size",
+      "values":[
+         "XS",
+         "S",
+         "M",
+         "L",
+         "XL"
+      ]
+   }
+],
+"variation_quantity":[
+
+],
+"quantity":999,
+"categories":[
+   "Hoodies & Sweatshirts"
+],
+"pricing":{
+   "price":26
+},
+"outofStock":false
+    },
+    {
+      "sku":"do39344i",
+      "title":"Women Hooded Top",
+      "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.",
+      "images":{
+        "main":"54.jpg",
+        "catalog":[
+
+        ]
+      },
+      "manufacture_details":{
+        "model_number":"A123X",
+        "release_date":null
+      },
+      "shipping_details":{
+        "weight":350,
+        "width":10,
+        "height":10,
+        "depth":1
+      },
+      "variations":[
+        {
+            "type":"boxes",
+            "name":"size",
+            "values":[
+              "XS",
+              "S",
+              "M",
+              "L",
+              "XL"
+            ]
+        }
+      ],
+      "variation_quantity":[
+
+      ],
+      "quantity":999,
+      "categories":[
+        "Hoodies & Sweatshirts"
+      ],
+      "pricing":{
+        "price":26
+      },
+      "outofStock":true
+    },
+    {
+      "sku":"do39344i",
+      "title":"Women Hooded Top",
+      "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, recusandae odit? Odio at est nostrum voluptates ea sint consequatur voluptatibus officia! Facilis debitis sint provident, eveniet itaque aut quidem deleniti.",
+      "images":{
+          "main":"56.jpg",
+          "catalog":[
+
+          ]
+      },
+      "manufacture_details":{
+          "model_number":"A123X",
+          "release_date":null
+      },
+      "shipping_details":{
+          "weight":350,
+          "width":10,
+          "height":10,
+          "depth":1
+      },
+      "variations":[
+          {
+            "type":"boxes",
+            "name":"size",
+            "values":[
+                "XS",
+                "S",
+                "M",
+                "L",
+                "XL"
+            ]
+          }
+      ],
+      "variation_quantity":[
+
+      ],
+      "quantity":999,
+      "categories":[
+          "Hoodies & Sweatshirts"
+      ],
+      "pricing":{
+          "price":26
+      },
+      "outofStock":true
+    }
+  ]
+  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@Effect()
+loadCategories$ = this.actions$.pipe(
+  ofType(AppActions.loadCategories),
+  switchMap( actionData => {
+    return this.firestore.collection('categories').stateChanges();
+  }),
+  mergeMap( actions => actions),
+  map(action => {
+    console.log(action);
+    return {
+      id: action.payload.doc.id,
+      ...action.payload.doc.data() as Category,
+      subPromise: this.firestore.collection('categories')
+                      .doc(action.payload.doc.id).collection<Category>('subCategories')
+                      .valueChanges()
+    }
+  }),
+  concatMap( action => {
+    return action.subPromise.pipe(
+        map((response) => {
+          const category: Category = {
+            subCategories: response,
+            id: action.id,
+            title: action.title,
+            img: action.img
+          };
+          console.log(category);
+          return category;
+        }),
+        map( category => AppActions.loadCategorySuccess({ category }) ),
+        catchError((err) => {
+            return of(AppActions.loadCategoriesFailure({ error: 'error' }) );
+        })
+    );
+  }),
+);
+
+
+
+
+
+
+
+{
+    "_id": {
+        "$oid": "6055db809bb47b305b6b34d0"
+    },
+    "title": "Cotton Lace Blouse",
+    "sku": "do39344i",
+    "images": {
+        "main": "02.jpg",
+        "catalog": []
+    },
+    "manufacture_details": {
+      "model_number": "A123X",
+      "release_date": ""
+    },
+    "shipping_details": {
+        "weight": 350,
+        "width": 10,
+        "height": 10,
+        "depth": 1
+      },
+      "variations": [
+        {
+          "type": "dropbox",
+          "name": "size",
+          "values": ["XS", "S", "M", "L", "XL"]
+        },
+        {
+          "type": "colors",
+          "name": "colors",
+          "values": ["#eaeaeb", "#d1dceb", "#f4e6a2", "#f3dcff"]
+        }
+      ],
+      "variation_quantity" : [],
+      "quantity": 999,
+      "categories": ["Women’s T-shirt"],
+      "pricing": {"price": 27},
+      "outofStock": false
+}

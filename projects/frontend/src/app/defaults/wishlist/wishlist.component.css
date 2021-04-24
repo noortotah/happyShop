@@ -1,0 +1,20 @@
+.page-header {
+  min-height: auto;
+  max-height: auto;
+  height: 250px;
+  background-color: #777;
+}
+
+.items-section {
+  position: relative;
+  top: -140px;
+}
+
+.items-section .wishlist {
+  z-index: 999;
+}
+
+.product-img {
+  width: 100px;
+}
+/*# sourceMappingURL=wishlist.component.css.map */
